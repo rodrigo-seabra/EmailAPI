@@ -1,3 +1,12 @@
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
+
+static void Main(string[] args)
+{
+    CreateHostBuilder(args).Build().Run();
+}
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -15,6 +24,9 @@ builder.Services.AddCors(options =>
                           .AllowAnyMethod()
                           .AllowAnyHeader());
 });
+
+static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args);
 
 var app = builder.Build();
 
