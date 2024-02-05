@@ -1,11 +1,5 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-
-static void Main(string[] args)
-{
-    CreateHostBuilder(args).Build().Run();
-}
-
+using EmailApi.models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddControllers();
+
+builder.Services.AddDbContext<Contexto>
+    (options => options.UseSqlServer("Data Source=DESKTOP-BAH0590\\SQLSERVER2022;Initial Catalog = EmailAPI;Integrated Security = True;TrustServerCertificate = True"));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -25,8 +22,6 @@ builder.Services.AddCors(options =>
                           .AllowAnyHeader());
 });
 
-static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args);
 
 var app = builder.Build();
 
