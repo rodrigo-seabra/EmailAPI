@@ -8,8 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+
 builder.Services.AddDbContext<Contexto>
-    (options => options.UseSqlServer("Data Source=DESKTOP-BAH0590\\SQLSERVER2022;Initial Catalog = EmailAPI;Integrated Security = True;TrustServerCertificate = True"));
+    (options => options.UseSqlServer("Data Source=SP-1491025\\SQLSENAI;Initial Catalog = EmailAPI;Integrated Security = True;TrustServerCertificate = True"));
+
+//builder.Services.AddDbContext<Contexto>
+    //(options => options.UseSqlServer("Data Source=DESKTOP-BAH0590\\SQLSERVER2022;Initial Catalog = EmailAPI;Integrated Security = True;TrustServerCertificate = True"));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

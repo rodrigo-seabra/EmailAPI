@@ -39,11 +39,34 @@ namespace EmailApi.Controllers
             {
                 return BadRequest("Dados inválidos");
             }
+            else
+            {
+                try
+                {
+                    _context.Add(dataContact);
+                    _context.SaveChanges();
 
-            _context.Add(dataContact);
-            _context.SaveChanges();
 
-            return Ok("Post criado com sucesso");
+                    var resposta = new
+                    {
+                        status = "success",
+                        message = "Mensagem enviada com sucesso!"
+                    };
+
+                    return Ok(resposta);
+                } catch (Exception ex)
+                {
+                    // Resposta JSON para erro
+                    var erro = new
+                    {
+                        status = "error",
+                        message = $"Erro no envio do e-mail: {ex.Message}"
+                    };
+                    return StatusCode(500, erro);
+
+                }
+            }
+
         }
 
         // PUT api/<DataContactController>/5
